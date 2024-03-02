@@ -25,5 +25,12 @@ async function getCollectesBySensorId(sensor_id) {
 async function getCollectesByGatewayId(gateway_id) {
   return await db('collecte').where({ gateway_id });
 }
-
-module.exports = { createCollecte, getAllCollectes, getCollectesBySensorId, getCollectesByGatewayId };
+async function deleteCollecte(gateway_id, sensor_id) {
+  return await db('collecte').where({ gateway_id, sensor_id }).del();
+}
+async function updateCollecte(sensor_id, gateway_id, mesure, taux_erreur, unite) {
+  return await db('collecte')
+    .where({ sensor_id, gateway_id })
+    .update({ mesure, taux_erreur, unite });
+}
+module.exports = { updateCollecte,createCollecte, getAllCollectes, getCollectesBySensorId, getCollectesByGatewayId,deleteCollecte };

@@ -45,4 +45,40 @@ router.get('/collectes/gateway/:gateway_id', async (req, res) => {
   }
 });
 
+
+router.delete('/collectes/:gateway_id/:sensor_id', async (req, res) => {
+  try {
+    const { gateway_id, sensor_id } = req.params;
+    await collecteModel.deleteCollecte(gateway_id, sensor_id);
+    res.json({ message: 'collecte deleted successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Unable to delete collecte' });
+  }
+});
+
+
+
+router.put('/collectes/:sensor_id/:gateway_id', async (req, res) => {
+  try {
+    const { sensor_id, gateway_id } = req.params;
+    const { mesure, taux_erreur, unite } = req.body;
+    await collecteModel.updateCollecte(sensor_id, gateway_id, mesure, taux_erreur, unite);
+    res.json({ message: 'Collecte updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Unable to update collecte' });
+  }
+});
+
+module.exports = router;
+
+
+module.exports = router;
+
+
+
+
+
+
 module.exports = router;

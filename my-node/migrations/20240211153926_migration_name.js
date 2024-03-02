@@ -35,6 +35,8 @@ exports.up = function (knex) {
     })
     .createTable('produit', function (table) {
       table.increments('idprod').primary();
+      table.string('name');
+
       table.string('categorie');
       table.string('description');
       table.decimal('prix_unitaire', 10, 2);

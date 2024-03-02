@@ -11,6 +11,8 @@ const app = express();
 app.use(express.json());
 
 app.use('/api', sensorRoutes);
+app.use('/api', gatewayRoutes);
+
 app.use('/api', adminRoutes); // Utilisez les routes des administrateurs sur le chemin /api
 app.use('/api', productRoutes); // Utilisez les routes des produits sur le chemin /api
 app.use('/api', assignementRoutes); // Utilisez les routes d'attribution sur le chemin /api/assignements

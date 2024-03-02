@@ -10,8 +10,8 @@ const db = knex({
   }
 });
 
-async function createProduct(categorie, description, prix_unitaire, quantite, status) {
-  return await db('produit').insert({ categorie, description, prix_unitaire, quantite, status });
+async function createProduct(name,categorie, description, prix_unitaire, quantite, status) {
+  return await db('produit').insert({ name,categorie, description, prix_unitaire, quantite, status });
 }
 
 async function getAllProducts() {
@@ -22,8 +22,8 @@ async function getProductById(idprod) {
   return await db('produit').where({ idprod }).first();
 }
 
-async function updateProduct(idprod, categorie, description, prix_unitaire, quantite, status) {
-  return await db('produit').where({ idprod }).update({ categorie, description, prix_unitaire, quantite, status });
+async function updateProduct(idprod, name,categorie, description, prix_unitaire, quantite, status) {
+  return await db('produit').where({ idprod }).update({ name,categorie, description, prix_unitaire, quantite, status });
 }
 
 async function deleteProduct(idprod) {

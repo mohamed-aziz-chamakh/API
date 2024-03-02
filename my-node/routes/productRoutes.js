@@ -4,8 +4,8 @@ const productModel = require('../models/productModel');
 
 router.post('/products', async (req, res) => {
   try {
-    const { categorie, description, prix_unitaire, quantite, status } = req.body;
-    const newProduct = await productModel.createProduct(categorie, description, prix_unitaire, quantite, status);
+    const { name,categorie, description, prix_unitaire, quantite, status } = req.body;
+    const newProduct = await productModel.createProduct(name,categorie, description, prix_unitaire, quantite, status);
     res.status(201).json(newProduct);
   } catch (error) {
     console.error(error);
@@ -40,8 +40,8 @@ router.get('/products/:idprod', async (req, res) => {
 router.put('/products/:idprod', async (req, res) => {
   try {
     const { idprod } = req.params;
-    const { categorie, description, prix_unitaire, quantite, status } = req.body;
-    await productModel.updateProduct(idprod, categorie, description, prix_unitaire, quantite, status);
+    const { name,categorie, description, prix_unitaire, quantite, status } = req.body;
+    await productModel.updateProduct(idprod,name, categorie, description, prix_unitaire, quantite, status);
     res.json({ message: 'Product updated successfully' });
   } catch (error) {
     console.error(error);

@@ -26,4 +26,18 @@ async function getCompositionByProduitId(id_produit) {
   return await db('composition').where({ id_produit }).select('gateway_id');
 }
 
-module.exports = { createComposition, getAllCompositions, getCompositionByGatewayId, getCompositionByProduitId };
+async function deleteComposition(gateway_id, id_produit) {
+  return await db('composition').where({ gateway_id, id_produit }).del();
+}
+async function updateComposition(gateway_id, id_produit, new_gateway_id, new_id_produit) {
+  try {
+    // Update the composition in the database
+    await db('composition')
+      .where({ gateway_id, id_produit })
+      .update({ gateway_id: new_gateway_id, id_produit: new_id_produit });
+  } catch (error) {
+    throw new Error('Failed to update composition');
+  }
+}
+
+module.exports = { updateComposition,createComposition, getAllCompositions, getCompositionByGatewayId, getCompositionByProduitId ,deleteComposition};

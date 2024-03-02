@@ -56,4 +56,16 @@ router.delete('/assignements/:gateway_id/:sensor_id', async (req, res) => {
   }
 });
 
+router.put('/assignements/:old_gateway_id/:old_sensor_id', async (req, res) => {
+  try {
+    const { old_gateway_id, old_sensor_id } = req.params;
+    const { new_gateway_id, new_sensor_id } = req.body;
+    await assignementModel.updateAssignement(old_gateway_id, old_sensor_id, new_gateway_id, new_sensor_id);
+    res.json({ message: 'Assignement updated successfully' });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: 'Unable to update assignement' });
+  }
+});
+
 module.exports = router;

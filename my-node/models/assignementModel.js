@@ -29,5 +29,11 @@ async function getAssignementBySensorId(sensor_id) {
 async function deleteAssignement(gateway_id, sensor_id) {
   return await db('assignement').where({ gateway_id, sensor_id }).del();
 }
+async function updateAssignement(old_gateway_id, old_sensor_id, new_gateway_id, new_sensor_id) {
+  return await db('assignement')
+    .where({ gateway_id: old_gateway_id, sensor_id: old_sensor_id })
+    .update({ gateway_id: new_gateway_id, sensor_id: new_sensor_id });
+}
 
-module.exports = { createAssignement, getAllAssignements, getAssignementByGatewayId, getAssignementBySensorId, deleteAssignement };
+
+module.exports = { updateAssignement,createAssignement, getAllAssignements, getAssignementByGatewayId, getAssignementBySensorId, deleteAssignement };
