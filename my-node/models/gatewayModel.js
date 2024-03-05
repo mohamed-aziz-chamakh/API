@@ -18,8 +18,9 @@ async function getAllGateways() {
   return await db('gateway').select('*');
 }
 
-async function getGatewayById(gateway_id) {
-  return await db('gateway').where({ gateway_id }).first();
+async function getGatewayById(id) {
+  const gateway = await db('gateway').where({ gateway_id: id }).first();
+  return gateway || null;
 }
 
 async function updateGateway(gateway_id, nom, adresse_ip, adresse_mac, type, status) {

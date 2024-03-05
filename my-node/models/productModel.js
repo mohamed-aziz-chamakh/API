@@ -18,8 +18,9 @@ async function getAllProducts() {
   return await db('produit').select('*');
 }
 
-async function getProductById(idprod) {
-  return await db('produit').where({ idprod }).first();
+async function getProductById(id) {
+  const product = await db('produit').where({ idprod: id }).first();
+  return product || null;
 }
 
 async function updateProduct(idprod, name,categorie, description, prix_unitaire, quantite, status) {

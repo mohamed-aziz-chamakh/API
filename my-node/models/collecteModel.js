@@ -33,4 +33,9 @@ async function updateCollecte(sensor_id, gateway_id, mesure, taux_erreur, unite)
     .where({ sensor_id, gateway_id })
     .update({ mesure, taux_erreur, unite });
 }
-module.exports = { updateCollecte,createCollecte, getAllCollectes, getCollectesBySensorId, getCollectesByGatewayId,deleteCollecte };
+async function getCollecteByIds(sensor_id, gateway_id) {
+  return await db('collecte').where({ sensor_id, gateway_id }).first();
+}
+
+
+module.exports = { getCollecteByIds,updateCollecte,createCollecte, getAllCollectes, getCollectesBySensorId, getCollectesByGatewayId,deleteCollecte };

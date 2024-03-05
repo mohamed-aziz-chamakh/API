@@ -6,7 +6,8 @@ const productRoutes = require('./routes/productRoutes'); // Importez les routes 
 const assignementRoutes = require('./routes/assignementRoutes'); // Importez les routes d'attribution
 const collecteRoutes = require('./routes/collecteRoutes'); // Importez les routes de collecte
 const compositionRoutes= require('./routes/compositionRoutes');
-
+const swaggerUi = require('swagger-ui-express');
+const swaggerSpec = require('./swagger');
 const app = express();
 app.use(express.json());
 
@@ -18,6 +19,7 @@ app.use('/api', productRoutes); // Utilisez les routes des produits sur le chemi
 app.use('/api', assignementRoutes); // Utilisez les routes d'attribution sur le chemin /api/assignements
 app.use('/api', collecteRoutes); // Utilisez les routes de collecte sur le chemin /api/collectes
 app.use('/api', compositionRoutes); // Utilisez les routes de collecte sur le chemin /api/collectes
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 
 const PORT = process.env.PORT || 3000;

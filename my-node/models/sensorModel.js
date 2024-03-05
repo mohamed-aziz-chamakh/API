@@ -19,8 +19,10 @@ async function getAllSensors() {
 }
 
 async function getSensorById(id) {
-  return await db('sensor').where({ sensor_id: id }).first();
+  const sensor = await db('sensor').where({ sensor_id: id }).first();
+  return sensor || null; // Return null if sensor doesn't exist
 }
+
 
 async function updateSensor(id, name, description, type,status) {
   return await db('sensor').where({ sensor_id: id }).update({ name, description, type, status });

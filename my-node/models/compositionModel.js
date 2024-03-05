@@ -17,6 +17,10 @@ async function createComposition(gateway_id, id_produit) {
 async function getAllCompositions() {
   return await db('composition').select('*');
 }
+async function getCompositionByIds(gateway_id, id_produit) {
+  return await db('composition').where({ gateway_id, id_produit }).first();
+}
+
 
 async function getCompositionByGatewayId(gateway_id) {
   return await db('composition').where({ gateway_id }).select('id_produit');
@@ -40,4 +44,4 @@ async function updateComposition(gateway_id, id_produit, new_gateway_id, new_id_
   }
 }
 
-module.exports = { updateComposition,createComposition, getAllCompositions, getCompositionByGatewayId, getCompositionByProduitId ,deleteComposition};
+module.exports = { getCompositionByIds,updateComposition,createComposition, getAllCompositions, getCompositionByGatewayId, getCompositionByProduitId ,deleteComposition};

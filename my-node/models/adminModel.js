@@ -18,8 +18,9 @@ async function getAllAdmins() {
   return await db('admin').select('*');
 }
 
-async function getAdminById(idadmin) {
-  return await db('admin').where({ idadmin }).first();
+async function getAdminById(id) {
+  const admin = await db('admin').where({ idadmin: id }).first();
+  return admin || null;
 }
 
 async function updateAdmin(idadmin, nom, prenom, mail, role) {
