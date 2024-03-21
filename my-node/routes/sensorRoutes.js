@@ -20,6 +20,8 @@ const sensorModel = require('../models/sensorModel');
  *           type: integer
  *         name:
  *           type: string
+ *         adresse_ip : 
+ *           type: string
  *         description:
  *           type: string
  *         type:
@@ -57,8 +59,8 @@ const sensorModel = require('../models/sensorModel');
 
 router.post('/sensors', async (req, res) => {
   try {
-    const { name, description, type ,status} = req.body;
-    const newSensor = await sensorModel.createSensor(name, description, type,status);
+    const { name,adresse_ip, description, type ,status} = req.body;
+    const newSensor = await sensorModel.createSensor(name,adresse_ip, description, type,status);
     res.status(201).json(newSensor);
   } catch (error) {
     console.error(error);
@@ -163,7 +165,7 @@ router.get('/sensors/:id', async (req, res) => {
 router.put('/sensors/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, description, type, status } = req.body;
+    const { name,adresse_ip, description, type, status } = req.body;
 
     // Check if the sensor exists
     const existingSensor = await sensorModel.getSensorById(id);
@@ -172,7 +174,7 @@ router.put('/sensors/:id', async (req, res) => {
     }
 
     // Update the sensor
-    await sensorModel.updateSensor(id, name, description, type, status);
+    await sensorModel.updateSensor(id, name,adresse_ip, description, type, status);
     res.json({ message: 'Sensor updated successfully' });
   } catch (error) {
     console.error(error);

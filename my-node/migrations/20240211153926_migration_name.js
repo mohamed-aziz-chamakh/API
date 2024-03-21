@@ -8,6 +8,8 @@ exports.up = function (knex) {
     .createTable('sensor', function (table) {
       table.increments('sensor_id').primary();
       table.string('name');
+      table.string('adresse_ip');
+
       table.text('description');
       table.string('type');
       table.enum('status', ['Active', 'Inactive', 'Error', 'Maintenance']).defaultTo('Inactive');
@@ -66,7 +68,7 @@ exports.up = function (knex) {
       table.integer('sensor_id').unsigned();
       table.integer('gateway_id').unsigned();
 
-      table.string('mesure');
+      table.float('mesure');
       table.float('taux_erreur');
       table.string('unite');
       table.primary(['gateway_id', 'sensor_id']);

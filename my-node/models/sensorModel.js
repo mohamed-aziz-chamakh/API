@@ -10,8 +10,8 @@ const db = knex({
     }
   });
 
-async function createSensor(name, description, type, status) {
-  return await db('sensor').insert({ name, description, type,status });
+async function createSensor(name,adresse_ip, description, type, status) {
+  return await db('sensor').insert({ name,adresse_ip, description, type,status });
 }
 
 async function getAllSensors() {
@@ -24,8 +24,8 @@ async function getSensorById(id) {
 }
 
 
-async function updateSensor(id, name, description, type,status) {
-  return await db('sensor').where({ sensor_id: id }).update({ name, description, type, status });
+async function updateSensor(id, name,adresse_ip, description, type,status) {
+  return await db('sensor').where({ sensor_id: id }).update({ name,adresse_ip, description, type, status });
 }
 
 async function deleteSensor(id) {
